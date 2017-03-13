@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ecore
+Bundle-SymbolicName: com.sii.rental.ecore
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sii.rental.ecore.RentalCoreActivator
+Bundle-Vendor: SII
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;bundle-version="2.13.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: rental.jar,
+ .
+Export-Package: com.opcoach.training.rental,
+ com.sii.rental.ecore
