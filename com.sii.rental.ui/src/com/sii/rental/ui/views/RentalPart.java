@@ -9,14 +9,13 @@ import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
 import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
-import com.sii.rental.ecore.RentalCoreActivator;
-import org.eclipse.swt.layout.GridLayout;
 
 public class RentalPart {
 
@@ -33,6 +32,7 @@ public class RentalPart {
 		rentalDateToEdit.setText(rental.getEndDate().toString());
 	}
 	
+	@SuppressWarnings("unused")
 	@Inject
 	private ESelectionService selectionService;
 	

@@ -4,6 +4,7 @@
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.partsashcontainer.sample">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.partstack.sample">
         <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.part.sample" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalPart" label="Rental Part"/>
+        <children xsi:type="basic:Part" xmi:id="_r99FMAi0Eeeo28-H6Ms9fQ" elementId="com.sii.rental.eap.part.rentalagency" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalAgencyPart" label="Rental Agency"/>
       </children>
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
