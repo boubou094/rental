@@ -2,11 +2,14 @@ package com.sii.rental.ui.views;
 
 import java.util.Collection;
 
-import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Composite;
 
@@ -16,8 +19,11 @@ import com.sii.rental.ui.RentalProvider;
 
 public class RentalAgencyPart {
 
-	@PostConstruct
-	public void createUi(Composite parent,
+	@Inject
+	private ESelectionService selectionService;
+	
+	@Inject
+	public RentalAgencyPart(Composite parent,
 			IEclipseContext context,
 			@Named(RentalAddOn.RENTAL_AGENCIES) Collection<RentalAgency> rentalAgencies) {
 		TreeViewer treeViewer = new TreeViewer(parent);
@@ -29,6 +35,14 @@ public class RentalAgencyPart {
 		treeViewer.setLabelProvider(provider);
 
 		treeViewer.setInput(rentalAgencies);
+		
+		treeViewer.addSelectionChangedListener((event) -> {
+			ISelection selection = event.getSelection();
+			if (IStructuredSelection.class.isInstance(selection)) {
+				IStructuredSelection structuredSelection = IStructuredSelection.class.cast(selection);
+				selectionService.setSelection(structuredSelection.size() == 1 ? structuredSelection.getFirstElement(): structuredSelection.toArray());
+			}
+		});
 		
 		treeViewer.expandAll();
 	}
