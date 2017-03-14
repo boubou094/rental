@@ -2,8 +2,10 @@
 package com.sii.rental.ui.views;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -12,6 +14,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
 import com.opcoach.training.rental.Rental;
+import com.opcoach.training.rental.RentalAgency;
 import com.sii.rental.ecore.RentalCoreActivator;
 import org.eclipse.swt.layout.GridLayout;
 
@@ -30,8 +33,11 @@ public class RentalPart {
 		rentalDateToEdit.setText(rental.getEndDate().toString());
 	}
 	
+	@Inject
+	private ESelectionService selectionService;
+	
 	@PostConstruct
-	public void createUi(Composite parent) {
+	public void createUi(Composite parent, RentalAgency rentalAgency) {
 		parent.setLayout(GridLayoutFactory
 				.fillDefaults()
 				.numColumns(1)
@@ -86,7 +92,7 @@ public class RentalPart {
 		rentalDateToEdit.setText("xx/xx/xxxx");
 		//customerNameLabel.setText("Loué à : John Wayne");
 		
-		setRental(RentalCoreActivator.getAgency().getRentals().get(0));
+		setRental(rentalAgency.getRentals().get(0));
 	}
 
 	@Focus
