@@ -25,6 +25,8 @@ public class RentalAgencyPart {
 		treeViewer.setLabelProvider(provider);
 
 		treeViewer.setInput(rentalAgencies);
+		
+		treeViewer.expandAll();
 	}
 
 }

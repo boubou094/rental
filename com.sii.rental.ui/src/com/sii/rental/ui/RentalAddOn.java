@@ -17,7 +17,7 @@ public class RentalAddOn {
 	@PostConstruct
 	public void initContext(IEclipseContext context) {
 		context.set(RentalAgency.class, RentalCoreActivator.getAgency());
-		context.set(RENTAL_AGENCIES, Stream.of(RentalCoreActivator.getAgency()).collect(Collectors.toList()));
+		context.set(RENTAL_AGENCIES, Stream.of(RentalCoreActivator.getAgency(), RentalCoreActivator.getAgency()).collect(Collectors.toList()));
 	}
 	
 }

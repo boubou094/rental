@@ -4,14 +4,18 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
 
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
 
-public class RentalProvider extends LabelProvider implements ITreeContentProvider {
+public class RentalProvider extends LabelProvider implements ITreeContentProvider, IColorProvider {
 
 	class AgencyCategory {
 		private final String name;
@@ -107,6 +111,24 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		}
 
 		return false;
+	}
+
+	@Override
+	public Color getForeground(Object element) {
+		if (RentalAgency.class.isInstance(element)) {
+			return Display.getCurrent().getSystemColor(SWT.COLOR_WHITE);
+		}
+		
+		return Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_FOREGROUND);
+	}
+
+	@Override
+	public Color getBackground(Object element) {
+		if (RentalAgency.class.isInstance(element)) {
+			return Display.getCurrent().getSystemColor(SWT.COLOR_BLACK);
+		}
+		
+		return Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_BACKGROUND);
 	}
 
 }
