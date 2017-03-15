@@ -10,7 +10,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.extensions.Preference;
@@ -29,6 +28,7 @@ import com.opcoach.training.rental.RentalAgency;
 import com.sii.rental.ui.RentalAddOn;
 import com.sii.rental.ui.RentalProvider;
 
+@SuppressWarnings("restriction")
 public class RentalAgencyPart {
 
 	private TreeViewer treeViewer;

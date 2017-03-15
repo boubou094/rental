@@ -10,13 +10,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
+import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.RentalAgency;
 import com.sii.rental.ecore.RentalCoreActivator;
 
@@ -42,6 +46,11 @@ public class RentalAddOn {
 		registry.put(IMG_AGENCY, ImageDescriptor.createFromURL(b.getEntry(IMG_AGENCY)));
 		
 		return registry;
+	}
+	
+	@Inject @Optional
+	void reactOnRentalEvent(@UIEventTopic("rental/copy") Customer customer) {
+		System.out.println(customer.getDisplayName());
 	}
 	
 }
