@@ -4,16 +4,27 @@ import static com.sii.rental.ui.RentalUIConstants.IMG_AGENCY;
 import static com.sii.rental.ui.RentalUIConstants.IMG_CUSTOMER;
 import static com.sii.rental.ui.RentalUIConstants.IMG_RENTAL;
 import static com.sii.rental.ui.RentalUIConstants.IMG_RENTAL_OBJECT;
+import static com.sii.rental.ui.RentalUIConstants.PREF_CUSTOMER_COLOR;
+import static com.sii.rental.ui.RentalUIConstants.PREF_RENTAL_COLOR;
+import static com.sii.rental.ui.RentalUIConstants.PREF_RENTAL_OBJECT_COLOR;
 import static com.sii.rental.ui.RentalUIConstants.RENTAL_UI_IMG_REGISTRY;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.e4.core.di.extensions.Preference;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.resource.ColorRegistry;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.StringConverter;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -22,6 +33,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
+import com.opcoach.e4.preferences.ScopedPreferenceStore;
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
@@ -64,6 +76,8 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	
 	@Inject @Named(RENTAL_UI_IMG_REGISTRY)
 	private ImageRegistry imageRegistry;
+	
+	private IPreferenceStore store = new ScopedPreferenceStore(InstanceScope.INSTANCE, "com.sii.rental.ui");
 	
 	@Override
 	public String getText(Object element) {
@@ -148,6 +162,12 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	public Color getBackground(Object element) {
 		if (RentalAgency.class.isInstance(element)) {
 			return Display.getCurrent().getSystemColor(SWT.COLOR_BLACK);
+		} else if (Customer.class.isInstance(element)) {
+			return this.getColor(this.store.getString(PREF_CUSTOMER_COLOR));
+		} else if (Rental.class.isInstance(element)) {
+			return this.getColor(this.store.getString(PREF_RENTAL_COLOR));
+		} else if (RentalObject.class.isInstance(element)) {
+			return this.getColor(this.store.getString(PREF_RENTAL_OBJECT_COLOR));
 		}
 		
 		return Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_BACKGROUND);
@@ -168,6 +188,19 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		}
 		
 		return super.getImage(element);
+	}
+	
+	private Color getColor(String rgbKey) {
+		ColorRegistry colorRegistry = JFaceResources.getColorRegistry();
+		
+		Optional<Color> col = Optional.ofNullable(colorRegistry.get(rgbKey));
+		
+		if (!col.isPresent()) {
+			colorRegistry.put(rgbKey, StringConverter.asRGB(rgbKey));
+			col = Optional.of(colorRegistry.get(rgbKey));
+		}
+		
+		return col.get();
 	}
 
 }

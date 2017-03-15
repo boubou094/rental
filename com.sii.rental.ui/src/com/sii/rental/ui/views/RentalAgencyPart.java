@@ -1,13 +1,19 @@
 package com.sii.rental.ui.views;
 
+import static com.sii.rental.ui.RentalUIConstants.PREF_CUSTOMER_COLOR;
+import static com.sii.rental.ui.RentalUIConstants.PREF_RENTAL_COLOR;
+import static com.sii.rental.ui.RentalUIConstants.PREF_RENTAL_OBJECT_COLOR;
+
 import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.core.di.extensions.Preference;
 import org.eclipse.e4.ui.di.AboutToHide;
 import org.eclipse.e4.ui.di.AboutToShow;
 import org.eclipse.e4.ui.model.application.ui.menu.MMenuElement;
@@ -25,6 +31,9 @@ import com.sii.rental.ui.RentalProvider;
 
 public class RentalAgencyPart {
 
+	private TreeViewer treeViewer;
+	private RentalProvider provider;
+	
 	@Inject
 	private ESelectionService selectionService;
 	
@@ -33,9 +42,9 @@ public class RentalAgencyPart {
 			IEclipseContext context,
 			@Named(RentalAddOn.RENTAL_AGENCIES) Collection<RentalAgency> rentalAgencies,
 			EMenuService menuService) {
-		TreeViewer treeViewer = new TreeViewer(parent);
+		treeViewer = new TreeViewer(parent);
 
-		RentalProvider provider = ContextInjectionFactory.make(RentalProvider.class, context);
+		provider = ContextInjectionFactory.make(RentalProvider.class, context);
 
 		treeViewer.setContentProvider(provider);
 
@@ -68,6 +77,13 @@ public class RentalAgencyPart {
 	@AboutToHide
 	public void aboutToHide(List<MMenuElement> items) {
 		
+	}
+	
+	@Inject
+	public void updateValues(@Preference(value=PREF_CUSTOMER_COLOR) String customerColor,
+			@Preference(value=PREF_RENTAL_COLOR) String rentalColor,
+			@Preference(value=PREF_RENTAL_OBJECT_COLOR) String rentalObjectColor) {
+		treeViewer.refresh();
 	}
 
 }

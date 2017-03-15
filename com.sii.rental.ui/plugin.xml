@@ -18,5 +18,11 @@
             name="Colors">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.sii.rental.ui.preferences.RentalPreferenceInitializer">
+      </initializer>
+   </extension>
 
 </plugin>
