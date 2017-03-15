@@ -39,6 +39,7 @@
       <children xsi:type="menu:ToolBar" xmi:id="_6wlLlsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.toolbar">
         <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handleditem.trimbar.top.open" iconURI="platform:/plugin/com.sii.rental.eap/icons/sample.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handleditem.trimbar.top.save" iconURI="platform:/plugin/com.sii.rental.eap/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_uVb_EAlmEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handledtoolitem.message" label="Message" iconURI="platform:/plugin/com.sii.rental.ui/icons/message_info.png" command="_gnBrIAliEee1qYOx9mKbsg"/>
       </children>
     </trimBars>
   </children>
