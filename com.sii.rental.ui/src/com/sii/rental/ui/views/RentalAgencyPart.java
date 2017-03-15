@@ -1,12 +1,19 @@
 package com.sii.rental.ui.views;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.ui.di.AboutToHide;
+import org.eclipse.e4.ui.di.AboutToShow;
+import org.eclipse.e4.ui.model.application.ui.menu.MHandledMenuItem;
+import org.eclipse.e4.ui.model.application.ui.menu.MMenuElement;
+import org.eclipse.e4.ui.services.EMenuService;
+import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -25,7 +32,8 @@ public class RentalAgencyPart {
 	@Inject
 	public RentalAgencyPart(Composite parent,
 			IEclipseContext context,
-			@Named(RentalAddOn.RENTAL_AGENCIES) Collection<RentalAgency> rentalAgencies) {
+			@Named(RentalAddOn.RENTAL_AGENCIES) Collection<RentalAgency> rentalAgencies,
+			EMenuService menuService) {
 		TreeViewer treeViewer = new TreeViewer(parent);
 
 		RentalProvider provider = ContextInjectionFactory.make(RentalProvider.class, context);
@@ -45,6 +53,22 @@ public class RentalAgencyPart {
 		});
 		
 		treeViewer.expandAll();
+
+		menuService.registerContextMenu(treeViewer.getControl(), "com.sii.rental.eap.popupmenu.message");
+	}
+	
+	@AboutToShow
+	public void aboutToShow(List<MMenuElement> items, EModelService modelService) {
+		/*String bc = "bundleclass://com.sii.rental.ui.handlers/com.sii.rental.ui.handlers.MessageHandler";
+		String bundle = "platfrom:/plugin/com.sii.rental.eap";
+		
+		MHandledMenuItem handlerItem = modelService.createModelElement(MHandledMenuItem.class);
+		handlerItem.setLabel("Message");*/
+	}
+	
+	@AboutToHide
+	public void aboutToHide(List<MMenuElement> items) {
+		
 	}
 
 }

@@ -9,13 +9,24 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handleditem.file.open" label="Open" iconURI="platform:/plugin/com.sii.rental.eap/icons/sample.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handleditem.save" label="Save" iconURI="platform:/plugin/com.sii.rental.eap/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handleditem.quit" label="Quit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_tiSLMAljEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handledmenuitem.message" label="Message" command="_gnBrIAliEee1qYOx9mKbsg"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
       </children>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_bCdZ4AljEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handledmenuitem.message" label="Message" mnemonics="M" command="_gnBrIAliEee1qYOx9mKbsg"/>
     </mainMenu>
-    <sharedElements xsi:type="basic:Part" xmi:id="_r99FMAi0Eeeo28-H6Ms9fQ" elementId="com.sii.rental.eap.part.rentalagency" containerData="30" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalAgencyPart" label="Rental Agency"/>
-    <sharedElements xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.part.sample" containerData="70" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalPart" label="Rental Part"/>
+    <sharedElements xsi:type="basic:Part" xmi:id="_r99FMAi0Eeeo28-H6Ms9fQ" elementId="com.sii.rental.eap.part.rentalagency" containerData="30" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalAgencyPart" label="Rental Agency">
+      <menus xsi:type="menu:PopupMenu" xmi:id="_D3yNkAlkEee1qYOx9mKbsg" elementId="com.sii.rental.eap.popupmenu.message" label="Message" mnemonics="M">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_GY8iwAlkEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handledmenuitem.message" label="Message" command="_gnBrIAliEee1qYOx9mKbsg"/>
+      </menus>
+    </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.part.sample" containerData="70" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalPart" label="Rental Part">
+      <menus xmi:id="_hvRasAlkEee1qYOx9mKbsg" elementId="com.sii.rental.eap.menu.message" label="Message">
+        <tags>ViewMenu</tags>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_kJ7fQAlkEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handledmenuitem.message" label="Message" command="_gnBrIAliEee1qYOx9mKbsg"/>
+      </menus>
+    </sharedElements>
     <sharedElements xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.partsashcontainer.sample" horizontal="true">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.partstack.sample" containerData="70">
         <children xsi:type="advanced:Placeholder" xmi:id="__NnosAlcEee1qYOx9mKbsg" elementId="com.sii.rental.eap.placeholder.0" ref="_r99FMAi0Eeeo28-H6Ms9fQ"/>
@@ -35,6 +46,7 @@
   <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handler.openCommand" contributionURI="bundleclass://com.sii.rental.eap/com.sii.rental.eap.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handler.saveCommand" contributionURI="bundleclass://com.sii.rental.eap/com.sii.rental.eap.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handler.aboutCommand" contributionURI="bundleclass://com.sii.rental.eap/com.sii.rental.eap.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_oU3gkAliEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handler.messageCommand" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.handlers.MessageHandler" command="_gnBrIAliEee1qYOx9mKbsg"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -49,6 +61,7 @@
   <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
   <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
   <commands xmi:id="_6wlLhsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="_gnBrIAliEee1qYOx9mKbsg" elementId="com.sii.rental.eap.command.messageCommand" commandName="messageCommand" description="Affiche un message &quot;Hello World&quot;"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
