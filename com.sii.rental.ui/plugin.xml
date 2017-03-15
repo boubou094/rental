@@ -10,5 +10,13 @@
          </instanceof>
       </definition>
    </extension>
+   <extension
+         point="com.opcoach.e4.preferences.e4PreferencePages">
+      <page
+            class="com.sii.rental.ui.preferences.FieldEditorColorPreferencePage"
+            id="com.sii.rental.ui.page.color"
+            name="Colors">
+      </page>
+   </extension>
 
 </plugin>
