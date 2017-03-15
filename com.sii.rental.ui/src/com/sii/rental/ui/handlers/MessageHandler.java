@@ -19,4 +19,5 @@ public class MessageHandler {
 	public void execute(@Named(IServiceConstants.ACTIVE_SHELL) Shell shell) {
 		MessageDialog.openInformation(shell, "Title : Hello world!!!!", "Hello world !!!!");
 	}
+
 }

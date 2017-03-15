@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.window.main" label="Eclipse 4 RCP Application" width="1024" height="720">
     <children xsi:type="advanced:Area" xmi:id="_sc1qQAlcEee1qYOx9mKbsg" elementId="com.sii.rental.eap.area.0">
       <children xsi:type="advanced:Placeholder" xmi:id="_TJHt0AldEee1qYOx9mKbsg" elementId="com.sii.rental.eap.placeholder.2" ref="_6wlLksgZEeSyMNYR5xypkQ"/>
@@ -19,6 +19,9 @@
     <sharedElements xsi:type="basic:Part" xmi:id="_r99FMAi0Eeeo28-H6Ms9fQ" elementId="com.sii.rental.eap.part.rentalagency" containerData="30" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalAgencyPart" label="Rental Agency">
       <menus xsi:type="menu:PopupMenu" xmi:id="_D3yNkAlkEee1qYOx9mKbsg" elementId="com.sii.rental.eap.popupmenu.message" label="Message" mnemonics="M">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_GY8iwAlkEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handledmenuitem.message" label="Message" command="_gnBrIAliEee1qYOx9mKbsg"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_zK5KwAlpEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handledmenuitem.copycustomer" label="Copy" command="_P62vIAlqEee1qYOx9mKbsg">
+          <visibleWhen xsi:type="ui:CoreExpression" xmi:id="_OOV4EAlsEee1qYOx9mKbsg" coreExpressionId="com.sii.rental.ui.definition.copyCustomer"/>
+        </children>
       </menus>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.part.sample" containerData="70" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalPart" label="Rental Part">
@@ -48,6 +51,7 @@
   <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handler.saveCommand" contributionURI="bundleclass://com.sii.rental.eap/com.sii.rental.eap.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handler.aboutCommand" contributionURI="bundleclass://com.sii.rental.eap/com.sii.rental.eap.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_oU3gkAliEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handler.messageCommand" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.handlers.MessageHandler" command="_gnBrIAliEee1qYOx9mKbsg"/>
+  <handlers xmi:id="_FfOoUAlrEee1qYOx9mKbsg" elementId="com.sii.rental.eap.handler.copyCommand" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.handlers.CopyHandler" command="_P62vIAlqEee1qYOx9mKbsg"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -63,6 +67,7 @@
   <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
   <commands xmi:id="_6wlLhsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
   <commands xmi:id="_gnBrIAliEee1qYOx9mKbsg" elementId="com.sii.rental.eap.command.messageCommand" commandName="messageCommand" description="Affiche un message &quot;Hello World&quot;"/>
+  <commands xmi:id="_P62vIAlqEee1qYOx9mKbsg" elementId="org.eclipse.ui.edit.copy" commandName="copyCustomerCommand"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
