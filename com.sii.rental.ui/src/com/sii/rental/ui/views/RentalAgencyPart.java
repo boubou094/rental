@@ -83,6 +83,8 @@ public class RentalAgencyPart {
 	public void updateValues(@Preference(value=PREF_CUSTOMER_COLOR) String customerColor,
 			@Preference(value=PREF_RENTAL_COLOR) String rentalColor,
 			@Preference(value=PREF_RENTAL_OBJECT_COLOR) String rentalObjectColor) {
+		if (null != treeViewer && !this.treeViewer.getControl().isDisposed())
+		
 		treeViewer.refresh();
 	}
 
