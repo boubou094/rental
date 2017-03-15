@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.window.main" label="Eclipse 4 RCP Application" width="500" height="400">
-    <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.partsashcontainer.sample">
-      <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.partstack.sample">
-        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.part.sample" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalPart" label="Rental Part"/>
-        <children xsi:type="basic:Part" xmi:id="_r99FMAi0Eeeo28-H6Ms9fQ" elementId="com.sii.rental.eap.part.rentalagency" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalAgencyPart" label="Rental Agency"/>
-      </children>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.window.main" label="Eclipse 4 RCP Application" width="1024" height="720">
+    <children xsi:type="advanced:Area" xmi:id="_sc1qQAlcEee1qYOx9mKbsg" elementId="com.sii.rental.eap.area.0">
+      <children xsi:type="advanced:Placeholder" xmi:id="_TJHt0AldEee1qYOx9mKbsg" elementId="com.sii.rental.eap.placeholder.2" ref="_6wlLksgZEeSyMNYR5xypkQ"/>
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="file" label="File">
@@ -17,6 +14,16 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
       </children>
     </mainMenu>
+    <sharedElements xsi:type="basic:Part" xmi:id="_r99FMAi0Eeeo28-H6Ms9fQ" elementId="com.sii.rental.eap.part.rentalagency" containerData="30" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalAgencyPart" label="Rental Agency"/>
+    <sharedElements xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.part.sample" containerData="70" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.RentalPart" label="Rental Part"/>
+    <sharedElements xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.partsashcontainer.sample" horizontal="true">
+      <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.partstack.sample" containerData="70">
+        <children xsi:type="advanced:Placeholder" xmi:id="__NnosAlcEee1qYOx9mKbsg" elementId="com.sii.rental.eap.placeholder.0" ref="_r99FMAi0Eeeo28-H6Ms9fQ"/>
+      </children>
+      <children xsi:type="basic:PartStack" xmi:id="_mj2doAlcEee1qYOx9mKbsg" elementId="com.sii.rental.eap.partstack.0" containerData="30">
+        <children xsi:type="advanced:Placeholder" xmi:id="_A59OsAldEee1qYOx9mKbsg" elementId="com.sii.rental.eap.placeholder.1" ref="_6wlLlMgZEeSyMNYR5xypkQ"/>
+      </children>
+    </sharedElements>
     <trimBars xmi:id="_6wlLlcgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.trimbar.top">
       <children xsi:type="menu:ToolBar" xmi:id="_6wlLlsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.toolbar">
         <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handleditem.trimbar.top.open" iconURI="platform:/plugin/com.sii.rental.eap/icons/sample.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
