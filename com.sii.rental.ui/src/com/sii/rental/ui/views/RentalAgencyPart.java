@@ -1,6 +1,7 @@
 package com.sii.rental.ui.views;
 
 import static com.sii.rental.ui.RentalUIConstants.PREF_CUSTOMER_COLOR;
+import static com.sii.rental.ui.RentalUIConstants.PREF_PALETTE;
 import static com.sii.rental.ui.RentalUIConstants.PREF_RENTAL_COLOR;
 import static com.sii.rental.ui.RentalUIConstants.PREF_RENTAL_OBJECT_COLOR;
 
@@ -85,7 +86,8 @@ public class RentalAgencyPart {
 	@Inject
 	public void updateValues(@Preference(value=PREF_CUSTOMER_COLOR) String customerColor,
 			@Preference(value=PREF_RENTAL_COLOR) String rentalColor,
-			@Preference(value=PREF_RENTAL_OBJECT_COLOR) String rentalObjectColor) {
+			@Preference(value=PREF_RENTAL_OBJECT_COLOR) String rentalObjectColor,
+			@Preference(value=PREF_PALETTE) String paletteId) {
 		if (null != treeViewer && !this.treeViewer.getControl().isDisposed())
 		
 		treeViewer.refresh();

@@ -7,6 +7,8 @@ import org.eclipse.jface.resource.StringConverter;
 
 import com.opcoach.e4.preferences.ScopedPreferenceStore;
 import com.sii.rental.ui.RentalUIConstants;
+import com.sii.rental.ui.palette.DefaultPalette;
+
 import org.eclipse.swt.graphics.RGB;
 
 public class RentalPreferenceInitializer extends AbstractPreferenceInitializer implements RentalUIConstants {
@@ -23,6 +25,7 @@ public class RentalPreferenceInitializer extends AbstractPreferenceInitializer i
 		store.setDefault(PREF_CUSTOMER_COLOR, StringConverter.asString(new RGB(255, 0, 0)));
 		store.setDefault(PREF_RENTAL_COLOR, StringConverter.asString(new RGB(0, 255, 0)));
 		store.setDefault(PREF_RENTAL_OBJECT_COLOR, StringConverter.asString(new RGB(0, 0, 255)));
+		store.setDefault(PREF_PALETTE, "com.sii.rental.ui.palette.default");
 	}
 
 }

@@ -5,11 +5,13 @@ import static com.sii.rental.ui.RentalUIConstants.IMG_CUSTOMER;
 import static com.sii.rental.ui.RentalUIConstants.IMG_RENTAL;
 import static com.sii.rental.ui.RentalUIConstants.IMG_RENTAL_OBJECT;
 import static com.sii.rental.ui.RentalUIConstants.PREF_CUSTOMER_COLOR;
+import static com.sii.rental.ui.RentalUIConstants.PREF_PALETTE;
 import static com.sii.rental.ui.RentalUIConstants.PREF_RENTAL_COLOR;
 import static com.sii.rental.ui.RentalUIConstants.PREF_RENTAL_OBJECT_COLOR;
 import static com.sii.rental.ui.RentalUIConstants.RENTAL_UI_IMG_REGISTRY;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -37,11 +39,11 @@ import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
 
-public class RentalProvider extends LabelProvider implements ITreeContentProvider, IColorProvider{
+public class RentalProvider extends LabelProvider implements ITreeContentProvider, IColorProvider {
 
-	
 	class AgencyCategory {
 		private final String name;
+
 		@Override
 		public int hashCode() {
 			final int prime = 31;
@@ -79,22 +81,22 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		private final RentalAgency agency;
 		private final Supplier<Object[]> childrenSuplier;
 		private final Image image;
-		
+
 		AgencyCategory(String name, RentalAgency agency, Supplier<Object[]> childrenSuplier, Image image) {
 			this.name = name;
 			this.agency = agency;
 			this.childrenSuplier = childrenSuplier;
 			this.image = image;
 		}
-		
+
 		RentalAgency getRentalAgency() {
 			return agency;
 		}
-		
+
 		public Object[] getchildren() {
 			return childrenSuplier.get();
 		}
-		
+
 		public Image getImage() {
 			return image;
 		}
@@ -107,14 +109,17 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		private RentalProvider getOuterType() {
 			return RentalProvider.this;
 		}
-		
+
 	}
-	
-	@Inject @Named(RENTAL_UI_IMG_REGISTRY)
+
+	@Inject
+	@Named(RENTAL_UI_IMG_REGISTRY)
 	private ImageRegistry imageRegistry;
-	
+
 	private IPreferenceStore store = new ScopedPreferenceStore(InstanceScope.INSTANCE, "com.sii.rental.ui");
-	
+
+	private Map<String, Palette> paletteManager;
+
 	@Override
 	public String getText(Object element) {
 		if (RentalAgency.class.isInstance(element)) {
@@ -130,7 +135,6 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 			final RentalObject rentalObject = RentalObject.class.cast(element);
 			return rentalObject.getName();
 		}
-		
 
 		return super.getText(element);
 	}
@@ -149,10 +153,12 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		if (RentalAgency.class.isInstance(parentElement)) {
 			final RentalAgency agency = RentalAgency.class.cast(parentElement);
 			AgencyCategory[] agencyCategories = new AgencyCategory[] {
-				new AgencyCategory("Customers", agency, () -> agency.getCustomers().toArray(), imageRegistry.get(IMG_CUSTOMER)),
-				new AgencyCategory("Locations", agency, () -> agency.getRentals().toArray(), imageRegistry.get(IMG_RENTAL)),
-				new AgencyCategory("Object à louer", agency, () -> agency.getObjectsToRent().toArray(), imageRegistry.get(IMG_RENTAL_OBJECT))
-			};
+					new AgencyCategory("Customers", agency, () -> agency.getCustomers().toArray(),
+							imageRegistry.get(IMG_CUSTOMER)),
+					new AgencyCategory("Locations", agency, () -> agency.getRentals().toArray(),
+							imageRegistry.get(IMG_RENTAL)),
+					new AgencyCategory("Object à louer", agency, () -> agency.getObjectsToRent().toArray(),
+							imageRegistry.get(IMG_RENTAL_OBJECT)) };
 			return agencyCategories;
 		} else if (AgencyCategory.class.isInstance(parentElement)) {
 			return AgencyCategory.class.cast(parentElement).getchildren();
@@ -187,15 +193,38 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 	@Override
 	public Color getForeground(Object element) {
+		if (null != paletteManager) {
+			Palette palette = paletteManager.get(this.store.getString(PREF_PALETTE));
+			if (null != palette) {
+				return palette.getColorProvider().getForeground(element);
+			}
+		}
+
 		if (RentalAgency.class.isInstance(element)) {
 			return Display.getCurrent().getSystemColor(SWT.COLOR_WHITE);
 		}
-		
+
 		return Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_FOREGROUND);
+	}
+
+	@Inject
+	public void setPaletteManager(@Named(RentalAddOn.PALETTE_MANAGER) Object object) {
+		if (Map.class.isInstance(object)) {
+			@SuppressWarnings("unchecked")
+			final Map<String, Palette> manager = (Map<String, Palette>) object;
+			this.paletteManager = manager;
+		}
 	}
 
 	@Override
 	public Color getBackground(Object element) {
+		if (null != paletteManager) {
+			Palette palette = paletteManager.get(this.store.getString(PREF_PALETTE));
+			if (null != palette) {
+				return palette.getColorProvider().getBackground(element);
+			}
+		}
+
 		if (RentalAgency.class.isInstance(element)) {
 			return Display.getCurrent().getSystemColor(SWT.COLOR_BLACK);
 		} else if (Customer.class.isInstance(element)) {
@@ -205,10 +234,10 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		} else if (RentalObject.class.isInstance(element)) {
 			return this.getColor(this.store.getString(PREF_RENTAL_OBJECT_COLOR));
 		}
-		
+
 		return Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_BACKGROUND);
 	}
-	
+
 	@Override
 	public Image getImage(Object element) {
 		if (RentalAgency.class.isInstance(element)) {
@@ -222,20 +251,20 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		} else if (AgencyCategory.class.isInstance(element)) {
 			return AgencyCategory.class.cast(element).getImage();
 		}
-		
+
 		return super.getImage(element);
 	}
-	
+
 	private Color getColor(String rgbKey) {
 		ColorRegistry colorRegistry = JFaceResources.getColorRegistry();
-		
+
 		Optional<Color> col = Optional.ofNullable(colorRegistry.get(rgbKey));
-		
+
 		if (!col.isPresent()) {
 			colorRegistry.put(rgbKey, StringConverter.asRGB(rgbKey));
 			col = Optional.of(colorRegistry.get(rgbKey));
 		}
-		
+
 		return col.get();
 	}
 

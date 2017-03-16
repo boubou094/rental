@@ -18,6 +18,11 @@
             class="com.sii.rental.ui.preferences.FieldEditorColorPreferencePage"
             id="com.sii.rental.ui.page.color">
       </page>
+      <page
+            class="com.sii.rental.ui.preferences.RentalPalettePreferences"
+            id="com.sii.rental.ui.page.palette"
+            name="Palette">
+      </page>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
