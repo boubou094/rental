@@ -6,12 +6,15 @@ import static com.sii.rental.ui.RentalUIConstants.IMG_RENTAL;
 import static com.sii.rental.ui.RentalUIConstants.IMG_RENTAL_OBJECT;
 import static com.sii.rental.ui.RentalUIConstants.RENTAL_UI_IMG_REGISTRY;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
@@ -51,6 +54,22 @@ public class RentalAddOn {
 	@Inject @Optional
 	void reactOnRentalEvent(@UIEventTopic("rental/copy") Customer customer) {
 		System.out.println(customer.getDisplayName());
+	}
+	
+	@Inject
+	public void getExtensionQuickAccess(IExtensionRegistry registry) {
+		IConfigurationElement[] elements = registry.getConfigurationElementsFor("org.eclipse.e4.workbench.model");
+		
+		Arrays.stream(elements)
+			.filter((e) -> e.getName().equals("fragment"))
+			.map((e) -> e.getNamespaceIdentifier() + ":" + e.getAttribute("uri"))
+			.forEach(System.out::println);
+		
+		Arrays.stream(elements)
+		.filter((e) -> e.getName().equals("processor"))
+		.map((e) -> e.getNamespaceIdentifier() + ":" + e.getAttribute("class"))
+		.forEach(System.out::println);
+					
 	}
 	
 }
