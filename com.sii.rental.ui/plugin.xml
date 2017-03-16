@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
+   <extension-point id="palette" name="palette" schema="schema/palette.exsd"/>
 
    <extension
          point="org.eclipse.core.expressions.definitions">
@@ -30,6 +31,29 @@
       <fragment
             uri="fragment.e4xmi">
       </fragment>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="com.sii.rental.ui.adapters.RentalToCustomerAdapterFactory"
+            class="com.sii.rental.ui.adapters.RentalToCustomerAdapterFactory">
+         <adapter
+               type="com.opcoach.training.rental.Customer">
+         </adapter>
+      </factory>
+   </extension>
+   <extension
+         point="com.sii.rental.ui.palette">
+      <palette
+            id="com.sii.rental.ui.palette.default"
+            name="default"
+            paletteClass="com.sii.rental.ui.palette.DefaultPalette">
+      </palette>
+      <palette
+            id="com.sii.rental.ui.palette.fix"
+            name="fix"
+            paletteClass="com.sii.rental.ui.palette.FixPalette">
+      </palette>
    </extension>
 
 </plugin>

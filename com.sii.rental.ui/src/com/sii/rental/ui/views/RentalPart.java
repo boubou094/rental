@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.adapter.Adapter;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.services.IServiceConstants;
@@ -26,6 +27,7 @@ import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
 
+@SuppressWarnings("restriction")
 public class RentalPart {
 
 	private Label rentedObjectLabel, customerNameLabel;
@@ -59,6 +61,10 @@ public class RentalPart {
 	@Inject
 	private ESelectionService selectionService;
 
+	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Inject
 	public RentalPart(MPart part, Composite parent, RentalAgency rentalAgency) {
 		partId = part.getElementId();
@@ -146,6 +152,12 @@ public class RentalPart {
 	public void selectCustomers(@Named(IServiceConstants.ACTIVE_SELECTION) Object[] objects) {
 		java.util.Optional.ofNullable(objects).ifPresent((customers) -> this.setCustomer(Arrays.stream(customers)
 				.filter(Customer.class::isInstance).map(Customer.class::cast).collect(Collectors.toSet())));
+	}
+	
+	@Inject
+	public void useObjectAsCustomer(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Object object, Adapter adapter) {
+		java.util.Optional<Customer> customer = java.util.Optional.ofNullable(adapter.adapt(object, Customer.class));
+		this.setCustomer(customer.map(Stream::of).orElse(Stream.empty()).collect(Collectors.toSet()));
 	}
 
 }

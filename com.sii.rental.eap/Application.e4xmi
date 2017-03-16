@@ -37,7 +37,11 @@
       <children xsi:type="basic:PartStack" xmi:id="_mj2doAlcEee1qYOx9mKbsg" elementId="com.sii.rental.eap.partstack.0" containerData="30">
         <children xsi:type="advanced:Placeholder" xmi:id="_A59OsAldEee1qYOx9mKbsg" elementId="com.sii.rental.eap.placeholder.1" ref="_6wlLlMgZEeSyMNYR5xypkQ"/>
       </children>
+      <children xsi:type="basic:PartStack" xmi:id="_eg4AcAoyEeeWRvlt421X2w" elementId="com.sii.rental.eap.partstack.1">
+        <children xsi:type="advanced:Placeholder" xmi:id="_e8QU4AoyEeeWRvlt421X2w" elementId="com.sii.rental.eap.placeholder.3" ref="_kYFbgAoeEeeWRvlt421X2w"/>
+      </children>
     </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_kYFbgAoeEeeWRvlt421X2w" elementId="com.sii.rental.eap.part.customers" contributionURI="bundleclass://com.sii.rental.ui/com.sii.rental.ui.views.CustomerPart" label="Customers"/>
     <trimBars xmi:id="_6wlLlcgZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.trimbar.top">
       <children xsi:type="menu:ToolBar" xmi:id="_6wlLlsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.toolbar">
         <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="com.sii.rental.eap.handleditem.trimbar.top.open" iconURI="platform:/plugin/com.sii.rental.eap/icons/sample.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>

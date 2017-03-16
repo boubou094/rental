@@ -37,6 +37,9 @@ public class RentalAgencyPart {
 	@Inject
 	private ESelectionService selectionService;
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Inject
 	public RentalAgencyPart(Composite parent,
 			IEclipseContext context,
